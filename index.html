@@ -61,7 +61,7 @@
 		<div style="margin: 0 32px 0 auto;" layout layoutAlign="center center">
 
 			<div flex="20" layoutAlign="center center">
-			<md-card layout="column" layout-align="center center" class="add-card">
+			<md-card layout="column" layout-align="center center" class="add-card mat-elevation-z5">
 				<md-button flex class="md-accent" data-ng-click="addNew('Player')">Add Player</md-button>
 				<md-button flex class=" md-primary" data-ng-click="addNew('NPC')">Add NPC</md-button>
 				<md-button flex class=" md-warn" data-ng-click="addNew('Monster')">Add Monster</md-button>
@@ -111,11 +111,11 @@
 					<md-button class="clearButton" data-ng-click="creature.name = ''">&times;</md-button>
 				</td>-->
 								<md-input-container dense class="number-input">
-									<input ng-class="getInputColor(creature.category)" type="number" data-ng-model="creature.initiativeModifier" />
+									<input ng-class="getInputColor(creature.category)" type="number" min="-5" data-ng-model="creature.initiativeModifier" />
 								</md-input-container>
 								<span flex="20"></span>
 								<md-input-container dense class="number-input">
-									<input ng-class="getInputColor(creature.category)" type="number" data-ng-model="creature.rolledInitiative" data-ng-change="sortCreatures(creatures)"
+									<input ng-class="getInputColor(creature.category)" type="number" min="1" data-ng-model="creature.rolledInitiative" data-ng-change="sortCreatures(creatures)"
 									 data-ng-model-options="{debounce:1000}" />
 								</md-input-container>
 								<span flex="10"></span>
@@ -130,7 +130,7 @@
 				</md-card-content>
 				<!--<md-divider></md-divider>-->
 				<md-card-actions>
-					<md-button class="md-primary">ROLL INITIATIVE!</md-button>
+					<md-button class="md-primary" data-ng-click="rollInitiative()">ROLL INITIATIVE!</md-button>
 				</md-card-actions>
 				<!--</table>-->
 			</md-card>
