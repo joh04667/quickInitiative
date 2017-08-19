@@ -81,6 +81,7 @@ md-toolbar.c700 {
 }
 .add-card {
 	display: inline-block;
+	animation: FadeIn 230ms cubic-bezier(0.0, 0.0, 0.2, 1);
 	/*position: absolute;*/
 }
 
@@ -105,9 +106,16 @@ md-toolbar.c700 {
  
 
 .main-card {
-	max-width: 800px;
+	min-width: 600px;
 	margin: auto;
 	z-index: 2;
+	animation: FadeIn 360ms cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+/*up to spec yo*/
+@keyframes FadeIn {
+	from { transform: translateY(32px); opacity: 0; }
+	to { transform: translateY(0px); opacity: 1; }
 }
 /*.main {
 	font-size: 1em;

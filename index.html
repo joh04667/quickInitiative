@@ -48,8 +48,8 @@
 
 	<span data-ng-cloak class="tooltiptext" data-ng-show="showTooltip">
 			</span>
-	<div class="main" data-ng-controller="MainController">
-		<div class="chapter">
+	<div class="main" ng-cloak data-ng-controller="MainController">
+		<div class="chapter" md-ink-ripple>
 
 			<!--<div class="initButtonBlock">-->
 			<!-- Newline character in button due to Safari not displaying text centered properly -->
@@ -58,7 +58,7 @@
 			<!--<div class="accent"></div>-->
 
 		</div>
-		<div style="margin: 0 8px;" layout layoutAlign="center center">
+		<div style="margin: 0 32px 0 auto;" layout layoutAlign="center center">
 
 			<div flex="20" layoutAlign="center center">
 			<md-card layout="column" layout-align="center center" class="add-card">
