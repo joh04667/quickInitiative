@@ -1,126 +1,182 @@
 <!doctype html>
 <html>
-	<head>
-		<link href="css/main.css" rel="stylesheet" />
-		<link rel="icon" type="image/x-icon" href="favicon.ico">
-		<meta charset="UTF-8"/>
-		<meta name="description" content="Quick Initiative is an initiative tracker for 
+
+<head>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+</head>
+<link href="css/main.css" rel="stylesheet" />
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="description" content="Quick Initiative is an initiative tracker for 
 			popular roleplaying games like Dungeons and Dragons and Pathfinder. It is 
-			mobile-friendly, open-source, and intentionally simple. "/>
-		<title>Quick Initiative</title>
-	
-		<!-- include AngularJS -->
-		<!--<script src="js/angular.js"></script>-->
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-		<!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>-->
-	</head>
-	
-	<body data-ng-app="InitiativeApp">
-		<div class="header">
-			<h1>Quick Initiative</h1>
+			mobile-friendly, open-source, and intentionally simple. " />
+<title>Quick Initiative</title>
 
-			<button class="normalButton tooltip" data-ng-click="showTooltip = !showTooltip">
-			What Is This?</button>
+<!-- include AngularJS -->
+<!--<script src="js/angular.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
 
-			<span data-ng-cloak class="tooltiptext" data-ng-show="showTooltip">This is a web tool designed for 
-					helping groups play popular role-playing games like 
-					<a href="http://dnd.wizards.com/">Dungeons and Dragons</a>, 
-					and <a href="http://paizo.com/pathfinderRPG">Pathfinder</a>.
-			</span>
-		</div>
-		<div class="main" data-ng-controller="MainController">
-			<div class="controls">
-				<div class="adderButtonBlock"> 
-					<button class="normalButton playerClass" data-ng-click="addNew('Player')">Add Player</button>
-		  			<button class="normalButton npcClass" data-ng-click="addNew('NPC')">Add NPC</button>
-					<button class="normalButton monsterClass" data-ng-click="addNew('Monster')">Add Monster</button>
-				</div>
-				<div class="initButtonBlock"> 
-					<!-- Newline character in button due to Safari not displaying text centered properly -->
-					<button class="initiativeButton" data-ng-click="rollInitiative()">Roll <br/> Initiative!</button>
-				</div>
+<!-- Angular Material Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+</head>
+
+<body data-ng-app="InitiativeApp">
+	<div layout="column" data-ng-controller="InfoController">
+
+		<md-toolbar class="mat-elevation-z4 c700">
+
+			<div class="md-toolbar-tools">
+				<h2 flex>Quick Initiative</h2>
+
+				<md-button ng-click="showInfo()" class="float-right md-icon-button">
+					<md-icon>&#xE887</md-icon>
+					<md-tooltip>What is this?</md-tooltip>
+				</md-button>
 			</div>
+		</md-toolbar>
 
-			<table class="creatureBlock" >
-				<tr class="heading">
-					<th>Name</th>
-					<!-- two empty th's for correct spacing -->
-					<th></th>
-					<th>Initiative Modifier</th>
-					<th>Rolled Initiative</th>
-					<th></th>
-				</tr>
-				<tr data-ng-repeat="creature in creatures" data-ng-class="{
+
+	</div>
+
+
+
+
+	<span data-ng-cloak class="tooltiptext" data-ng-show="showTooltip">
+			</span>
+	<div class="main" data-ng-controller="MainController">
+		<div class="chapter">
+
+			<!--<div class="initButtonBlock">-->
+			<!-- Newline character in button due to Safari not displaying text centered properly -->
+			<!--<md-button class="md-raised md-accent" data-ng-click="rollInitiative()">Roll <br/> Initiative!</md-button>
+		</div>-->
+			<!--<div class="accent"></div>-->
+
+		</div>
+		<div style="margin: 0 8px;" layout layoutAlign="center center">
+
+			<div flex="20" layoutAlign="center center">
+			<md-card layout="column" layout-align="center center" class="add-card">
+				<md-button flex class="md-accent" data-ng-click="addNew('Player')">Add Player</md-button>
+				<md-button flex class=" md-primary" data-ng-click="addNew('NPC')">Add NPC</md-button>
+				<md-button flex class=" md-warn" data-ng-click="addNew('Monster')">Add Monster</md-button>
+			</md-card>
+	</div>
+
+	<div flex="80">
+			<md-card class="main-card">
+				<!--<table class="creatureBlock">-->
+				<md-card-header>
+					<md-card-header-text>
+						<span class="md-title">Characters</span>
+						<span class="md-subhead">Initiative Order</span>
+					</md-card-header-text>
+
+					<md-card-action-icons>
+						<md-button class="md-icon-button">
+							<md-icon>more_vert</md-icon>
+						</md-button>
+					</md-card-action-icons>
+				</md-card-header>
+				<md-card-content class="no-pad">
+					<md-list class="no-pad md-dense">
+
+						<md-list-item layout class="header-row">
+							<span class="md-avatar"></span>
+							<span flex="initial">Name</span>
+							<span flex></span>
+							<span class="number-input ">Modifier</span>
+							<span flex="20"></span>
+							<span class="number-input ">Roll</span>
+							<span flex="10"></span>
+							<span class="md-button md-icon-button"></span>
+						</md-list-item>
+						<md-divider></md-divider>
+						<div class="no-pad" data-ng-repeat="creature in creatures" data-ng-class="{
 					'playerClass': creature.category === 'player', 
 					'npcClass': creature.category === 'npc', 
 					'monsterClass': creature.category === 'monster'}">
+							<md-list-item layout>
+								<img class="md-avatar" />
+								<md-input-container flex="initial" dense class="md-block">
+									<input ng-class="getInputColor(creature.category)" class="textInput" type="text" data-ng-model="creature.name" />
+								</md-input-container>
+								<span flex></span>
+								<!--<td>
+					<md-button class="clearButton" data-ng-click="creature.name = ''">&times;</md-button>
+				</td>-->
+								<md-input-container dense class="number-input">
+									<input ng-class="getInputColor(creature.category)" type="number" data-ng-model="creature.initiativeModifier" />
+								</md-input-container>
+								<span flex="20"></span>
+								<md-input-container dense class="number-input">
+									<input ng-class="getInputColor(creature.category)" type="number" data-ng-model="creature.rolledInitiative" data-ng-change="sortCreatures(creatures)"
+									 data-ng-model-options="{debounce:1000}" />
+								</md-input-container>
+								<span flex="10"></span>
+								<md-button class="md-secondary md-icon-button" data-ng-click="removeCreature(creature)">
+									<md-icon>&#xE92B;</md-icon>
+								</md-button>
 
-					<td>
-						<input class="textInput" type="text" data-ng-model="creature.name"/>
-					</td>
-					<td>
-						<button class="clearButton" data-ng-click="creature.name = ''">&times;</button>
-					</td>
-					<td>
-						<input class="numInput" type="number" data-ng-model="creature.initiativeModifier" />
-					</td>
-					<td>
-						<input class="numInput" type="number" data-ng-model="creature.rolledInitiative" 
-							data-ng-change="sortCreatures(creatures)" 
-							data-ng-model-options="{debounce:1000}"/>
-					</td>
-					<td class="buttonDetail">
-						<button class="normalButton" data-ng-click="removeCreature(creature)">Remove</button>
-		  			</td>
-		  		</tr>
-		  	</table>
+							</md-list-item>
+							<md-divider></md-divider>
+						</div>
+					</md-list>
+				</md-card-content>
+				<!--<md-divider></md-divider>-->
+				<md-card-actions>
+					<md-button class="md-primary">ROLL INITIATIVE!</md-button>
+				</md-card-actions>
+				<!--</table>-->
+			</md-card>
 
-			<footer>
-  				<div class="moreInfo">
-  					<div class="footerBlock">
-  						<a href="mailto:quickinitiativeapp@gmail.com">Email Me</a>
-  						<br/>
-  						<a href="https://github.com/keanfreeman/quickInitiative">Project On Github</a>
-  						<br/>
-  						<a href="https://www.freefavicon.com/">Favicon Source</a>
-  						<br/>
-  						<a href="https://ajax.googleapis.com">AngularJS</a>
-  						<br/>
-					</div>
-  					<div class="footerBlock">
-  						<button class="normalButton" data-ng-click="showMoreInfo = !showMoreInfo"  
-  							data-ng-init="showMoreInfo = false">More Information</button>
-  					</div>
-				</div>
-				<p style="display: none;" data-ng-class='{forceShow: showMoreInfo}'>
-						&emsp;Thank you for using my web app! My name is Kean, and I built 
-						this tool for groups that could use a tool to speed up rolling 
-						initiative, but don't need it to be overly complicated.
-						<br/>
-						Some tips:
-						<br/>
-						1. You can manually change rolled values on the fly - the list will 
-						reorder itself.
-						<br/>
-						2. This tool makes rerolling initiative every round very quick and 
-						simple, if you'd like to add some variety to your initiative count.
-						<br/>
-						3. You can have a player handle the initiative instead so the 
-						Game Master has less to worry about.
-						<br/>
-						4. This project is open source; if you think this tool could be better, 
-						make a change!
-				</p>
-	  	</footer>
+
+
+
+			</div>
 		</div>
+		<footer>
+			<div class="moreInfo">
+				<div class="footerBlock">
+					<a href="mailto:quickinitiativeapp@gmail.com">Email Me</a>
+					<br/>
+					<a href="https://github.com/keanfreeman/quickInitiative">Project On Github</a>
+					<br/>
+					<a href="https://www.freefavicon.com/">Favicon Source</a>
+					<br/>
+					<a href="https://ajax.googleapis.com">AngularJS</a>
+					<br/>
+				</div>
+				<div class="footerBlock">
+					<md-button class="normalButton" data-ng-click="showMoreInfo = !showMoreInfo" data-ng-init="showMoreInfo = false">More Information</md-button>
+				</div>
+			</div>
+			<p style="display: none;" data-ng-class='{forceShow: showMoreInfo}'>
+				&emsp;Thank you for using my web app! My name is Kean, and I built this tool for groups that could use a tool to speed up
+				rolling initiative, but don't need it to be overly complicated.
+				<br/> Some tips:
+				<br/> 1. You can manually change rolled values on the fly - the list will reorder itself.
+				<br/> 2. This tool makes rerolling initiative every round very quick and simple, if you'd like to add some variety to
+				your initiative count.
+				<br/> 3. You can have a player handle the initiative instead so the Game Master has less to worry about.
+				<br/> 4. This project is open source; if you think this tool could be better, make a change!
+			</p>
+		</footer>
+	</div>
 
-		<!-- Modules -->
-		<script src="js/app.js"></script>
-		
-		<!-- Controllers -->
-		<script src="js/controllers/MainController.js"></script>
-		
-		<!-- Directives -->
-		
-	</body>
+	<!-- Modules -->
+	<script src="js/app.js"></script>
+
+	<!-- Controllers -->
+	<script src="js/controllers/MainController.js"></script>
+
+	<!-- Directives -->
+
+</body>
+
 </html>

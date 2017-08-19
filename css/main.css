@@ -1,10 +1,115 @@
 html, body {
 	margin: 0;
 	padding: 0;
+	/*font-family: Roboto, Helvetica, sans-serif;*/
+	background-color: #f4f4f4;
 }
 
-.main {
-	font-family: Garamond;
+
+
+
+/*MD polyfills*/
+.mat-icon-button {
+	padding: 0;
+    min-width: 0;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    line-height: 40px;
+    border-radius: 50%;
+}
+
+.mat-elevation-z1 {
+	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.mat-elevation-z2 {
+	box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.mat-elevation-z3 {
+	box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+}
+
+.mat-elevation-z4 {
+	box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+}
+
+.mat-elevation-z5 {
+	box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+}
+
+
+md-input-container[dense] {
+	/*font-size: 13px;*/
+	margin: 12px 0 8px;
+}
+
+md-input-container[dense] .md-errors-spacer {
+	display: none;
+}
+
+md-input-container .md-input {
+	border-color: transparent;
+}
+
+
+
+
+
+/*util*/
+.no-pad {
+	padding: 0;
+}
+
+/*actual page stuff*/
+
+.chapter {
+	background-color: #3F51B5;
+	width: 100%;
+	padding-bottom: 80px;
+	margin-bottom: -80px;
+	min-height: 128px;
+}
+
+.accent {
+	background-color: #7986CB;
+}
+
+md-toolbar.c700 {
+	background-color: #303F9F
+}
+.add-card {
+	display: inline-block;
+	/*position: absolute;*/
+}
+
+.add-card > .md-button {
+	display: block;
+}
+
+.add-card > md-card-header-text {
+	background-color: #7986CB;
+}
+
+
+.header-row {
+	font-size: 13px;
+	color: rgba(0, 0, 0, 0.54);
+}
+
+.number-input {
+	width: 48px;
+}
+
+
+
+.main-card {
+	max-width: 800px;
+	margin: auto;
+	z-index: 2;
+}
+/*.main {
 	font-size: 1em;
 }
 
@@ -18,12 +123,10 @@ html, body {
 .header > h1 {
 	font-size: 3em;
 	font-weight: bold;
-	font-family: Garamond;
 	display: inline;
 }
 
 
-/* FOOTER SECTION */
 footer {
 	margin-top: 0em;
 	border-top: 2px dotted black;
@@ -50,11 +153,6 @@ footer {
 	color: red;
 }
 
-.footerBlock > .normalButton {
-	margin-left: 20%;
-	margin-top: .5em;
-	font-size: 1.5em;
-}
 
 .forceShow {
 	display: table-cell !important;
@@ -65,7 +163,6 @@ footer {
 	display: none !important;
 }
 
-/*CONTROLS SECTION*/
 .controls {
 	margin-left: 4%;
 	margin-right: 4%;
@@ -93,7 +190,6 @@ footer {
 	padding: 0em .5em 0em .5em;
 }
 
-/* BUTTONS */
 .normalButton {
 	background: white;
 	color: #000;
@@ -168,7 +264,6 @@ td .normalButton:hover {
 	color: white;
 }
 
-/* TABLE STUFF */
 .creatureBlock {
 	border-collapse: separate;
 	border-spacing: 0 1em;
@@ -181,7 +276,6 @@ tr > td {
 	padding: 5px;
 }
 
-/* Increases the size of input fields */
 td > input {
 	font-size: 20px;
 	font-weight: 900;
@@ -208,7 +302,6 @@ tr:not(.heading) {
 	font-size: 140%
 }
 
-/* COLORING FOR DIFFERENT CLASSES */
 
 .playerClass {
 	background-color: rgb(52,168,83);
@@ -222,7 +315,6 @@ tr:not(.heading) {
 	background-color: rgb(234,67,53);
 }
 
-/*TOOLTIP*/
 .tooltip {
 	float: right;
 	font-size: 1.25em;
@@ -246,4 +338,4 @@ tr:not(.heading) {
 .tooltiptext a {
 	text-decoration: none;
 	color: red;
-}
+}*/

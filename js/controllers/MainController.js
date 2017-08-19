@@ -1,17 +1,17 @@
-app.controller('MainController', ['$scope', function($scope) {
+app.controller('MainController', ['$scope', function ($scope) {
 	//CONTAINERS
 	$scope.creatures = [{
-			name: 'Player #1',
-			initiativeModifier: 0,
-			rolledInitiative: 0,
-			category: 'player',
-		},
-		{
-			name: 'Monster #1',
-			initiativeModifier: 0,
-			rolledInitiative: 0,
-			category: 'monster'
-		}
+		name: 'Player #1',
+		initiativeModifier: 0,
+		rolledInitiative: 0,
+		category: 'player',
+	},
+	{
+		name: 'Monster #1',
+		initiativeModifier: 0,
+		rolledInitiative: 0,
+		category: 'monster'
+	}
 	];
 
 	$scope.numPlayers = 1;
@@ -23,7 +23,7 @@ app.controller('MainController', ['$scope', function($scope) {
 
 	//FUNCTIONS
 
-	$scope.addNew = function(typeIn) {
+	$scope.addNew = function (typeIn) {
 		//Makes sure that added name has a proper number
 		var newName = "";
 		if (typeIn === "Player") {
@@ -40,42 +40,42 @@ app.controller('MainController', ['$scope', function($scope) {
 		}
 
 		$scope.creatures.push({
-				name: newName,
-				initiativeModifier: 0,
-				rolledInitiative: 0,
-				category: typeIn.toLowerCase()
+			name: newName,
+			initiativeModifier: 0,
+			rolledInitiative: 0,
+			category: typeIn.toLowerCase()
 		});
 	}
 
 	//Returns number between 1 and 20, as though rolling 1d20. Using 
 	//window.crypto because Math.random() seed may not have 
 	//been random enough
-	$scope.roll1D20 = function() {
+	$scope.roll1D20 = function () {
 		var array = new Uint32Array(1);
 		window.crypto.getRandomValues(array);
-		return 1 + (array[0] % 20); 
+		return 1 + (array[0] % 20);
 	}
 
 	//Sort the list of creatures
-	$scope.sortCreatures = function(creaturesIn) {
-		creaturesIn.sort(function(creature1, creature2) { 
+	$scope.sortCreatures = function (creaturesIn) {
+		creaturesIn.sort(function (creature1, creature2) {
 			return creature2.rolledInitiative - creature1.rolledInitiative;
 		});
 	}
 
 	//Roll initiative, then reorder the creatures by their rolled value
-	$scope.rollInitiative = function() {
+	$scope.rollInitiative = function () {
 		for (var i = 0; i < $scope.creatures.length; i++) {
 			var d20 = $scope.roll1D20();
-			$scope.creatures[i].rolledInitiative = 
-			d20 + $scope.creatures[i].initiativeModifier;
+			$scope.creatures[i].rolledInitiative =
+				d20 + $scope.creatures[i].initiativeModifier;
 		}
 		$scope.sortCreatures($scope.creatures);
 	}
 
 	//Removes the creature from the list and decriments the number of that 
 	//type of creature
-	$scope.removeCreature = function(creature) {
+	$scope.removeCreature = function (creature) {
 		var index = $scope.creatures.indexOf(creature);
 		if (creature.category === "player") {
 			$scope.numPlayers -= 1;
@@ -87,5 +87,30 @@ app.controller('MainController', ['$scope', function($scope) {
 			$scope.numMonsters -= 1;
 		}
 		$scope.creatures.splice(index, 1);
+	}
+
+	$scope.getInputColor = function(category) {
+		return {
+			player: 'md-primary',
+			npc: 'md-accent',
+			monster: 'md-warn'
+		}[category]
+	}
+}]);
+
+
+
+app.controller('InfoController', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+
+	$scope.showInfo = () => {
+
+		$mdDialog.show(
+			$mdDialog.alert()
+				.textContent('This is a web tool designed for helping groups play popular role-playing games like Dungeons and Dragons and Pathfinder.')
+				.clickOutsideToClose(true)
+				.ok('Neat!')
+				
+			
+		);
 	}
 }]);
