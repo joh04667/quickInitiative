@@ -28,10 +28,10 @@
 <body data-ng-app="InitiativeApp">
 	<div layout="column" data-ng-controller="InfoController">
 
-		<md-toolbar class="mat-elevation-z4 c700">
+		<md-toolbar class="mat-elevation-z4 md-hue-2">
 
 			<div class="md-toolbar-tools">
-				<h2 flex>Quick Initiative</h2>
+				<h1 flex>Quick Initiative</h1>
 
 				<md-button ng-click="showInfo()" class="float-right md-icon-button">
 					<md-icon>&#xE887</md-icon>
@@ -49,91 +49,101 @@
 	<span data-ng-cloak class="tooltiptext" data-ng-show="showTooltip">
 			</span>
 	<div class="main" ng-cloak data-ng-controller="MainController">
-		<div class="chapter" md-ink-ripple>
+		<div class="chapter">
 
 			<!--<div class="initButtonBlock">-->
 			<!-- Newline character in button due to Safari not displaying text centered properly -->
 			<!--<md-button class="md-raised md-accent" data-ng-click="rollInitiative()">Roll <br/> Initiative!</md-button>
 		</div>-->
-			<!--<div class="accent"></div>-->
+			<div class="accent"></div>
 
 		</div>
 		<div style="margin: 0 32px 0 auto;" layout layoutAlign="center center">
 
 			<div flex="20" layoutAlign="center center">
-			<md-card layout="column" layout-align="center center" class="add-card mat-elevation-z5">
-				<md-button flex class="md-accent" data-ng-click="addNew('Player')">Add Player</md-button>
-				<md-button flex class=" md-primary" data-ng-click="addNew('NPC')">Add NPC</md-button>
-				<md-button flex class=" md-warn" data-ng-click="addNew('Monster')">Add Monster</md-button>
-			</md-card>
-	</div>
+				<md-card layout="column" layout-align="center center" class="add-card mat-elevation-z5">
+					<md-button flex class="md-accent md-raised" data-ng-click="addNew('Player')">Add Player</md-button>
+					<md-button flex class=" md-primary" data-ng-click="addNew('NPC')">Add NPC</md-button>
+					<md-button flex class=" md-warn" data-ng-click="addNew('Monster')">Add Monster</md-button>
+				</md-card>
+			</div>
 
-	<div flex="80">
-			<md-card class="main-card">
-				<!--<table class="creatureBlock">-->
-				<md-card-header>
-					<md-card-header-text>
-						<span class="md-title">Characters</span>
-						<span class="md-subhead">Initiative Order</span>
-					</md-card-header-text>
+			<div flex="80">
+				<md-card class="main-card">
+					<!--<table class="creatureBlock">-->
+					<md-card-header>
+						<md-card-header-text>
+							<span class="md-title">Characters</span>
+							<span class="md-subhead">Initiative Order</span>
+						</md-card-header-text>
 
-					<md-card-action-icons>
-						<md-button class="md-icon-button">
-							<md-icon>more_vert</md-icon>
-						</md-button>
-					</md-card-action-icons>
-				</md-card-header>
-				<md-card-content class="no-pad">
-					<md-list class="no-pad md-dense">
+						<md-card-action-icons>
+							<md-menu>
+								<md-button class="md-icon-button" ng-click="$mdMenu.open($event)">
+									<md-icon>more_vert</md-icon>
+								</md-button>
+								<md-menu-content>
+									<md-menu-item>
+										<md-button>Do Something</md-button>
+									</md-menu-item>
+								</md-menu-content>
+							</md-menu>
 
-						<md-list-item layout class="header-row">
-							<span class="md-avatar"></span>
-							<span flex="initial">Name</span>
-							<span flex></span>
-							<span class="number-input ">Modifier</span>
-							<span flex="20"></span>
-							<span class="number-input ">Roll</span>
-							<span flex="10"></span>
-							<span class="md-button md-icon-button"></span>
-						</md-list-item>
-						<md-divider></md-divider>
-						<div class="no-pad" data-ng-repeat="creature in creatures" data-ng-class="{
+
+						</md-card-action-icons>
+					</md-card-header>
+					<md-card-content class="no-pad">
+						<md-list class="no-pad md-dense">
+
+							<md-list-item layout class="header-row">
+								<span class="md-avatar"></span>
+								<span flex="initial">Name</span>
+								<span flex></span>
+								<span class="number-input ">Modifier</span>
+								<span flex="20"></span>
+								<span class="number-input ">Roll</span>
+								<span flex="10"></span>
+								<span class="md-button md-icon-button"></span>
+							</md-list-item>
+							<!--<md-divider></md-divider>-->
+							<div class="no-pad" data-ng-repeat="creature in creatures" data-ng-class="{
 					'playerClass': creature.category === 'player', 
 					'npcClass': creature.category === 'npc', 
 					'monsterClass': creature.category === 'monster'}">
-							<md-list-item layout>
-								<img class="md-avatar" />
-								<md-input-container flex="initial" dense class="md-block">
-									<input ng-class="getInputColor(creature.category)" class="textInput" type="text" data-ng-model="creature.name" />
-								</md-input-container>
-								<span flex></span>
-								<!--<td>
+								<md-list-item layout ng-class="getInputColor(creature.category)">
+									<img class="md-avatar" ng-src="{{avatars.player[$index]}}" />
+
+										<md-input-container flex="initial" dense class="md-block">
+											<input ng-class="getInputColor(creature.category)" class="textInput" type="text" data-ng-model="creature.name" />
+										</md-input-container>
+									<span flex></span>
+									<!--<td>
 					<md-button class="clearButton" data-ng-click="creature.name = ''">&times;</md-button>
 				</td>-->
-								<md-input-container dense class="number-input">
-									<input ng-class="getInputColor(creature.category)" type="number" min="-5" data-ng-model="creature.initiativeModifier" />
-								</md-input-container>
-								<span flex="20"></span>
-								<md-input-container dense class="number-input">
-									<input ng-class="getInputColor(creature.category)" type="number" min="1" data-ng-model="creature.rolledInitiative" data-ng-change="sortCreatures(creatures)"
-									 data-ng-model-options="{debounce:1000}" />
-								</md-input-container>
-								<span flex="10"></span>
-								<md-button class="md-secondary md-icon-button" data-ng-click="removeCreature(creature)">
-									<md-icon>&#xE92B;</md-icon>
-								</md-button>
+									<md-input-container dense class="number-input">
+										<input  type="number" min="-5" data-ng-model="creature.initiativeModifier" />
+									</md-input-container>
+									<span flex="20"></span>
+									<md-input-container dense class="number-input">
+										<input ng-class="getInputColor(creature.category)" type="number" min="1" data-ng-model="creature.rolledInitiative" data-ng-change="sortCreatures(creatures)"
+										 data-ng-model-options="{debounce:1000}" />
+									</md-input-container>
+									<span flex="10"></span>
+									<md-button class="md-secondary md-icon-button" data-ng-click="removeCreature(creature)">
+										<md-icon>&#xE92B;</md-icon>
+									</md-button>
 
-							</md-list-item>
-							<md-divider></md-divider>
-						</div>
-					</md-list>
-				</md-card-content>
-				<!--<md-divider></md-divider>-->
-				<md-card-actions>
-					<md-button class="md-primary" data-ng-click="rollInitiative()">ROLL INITIATIVE!</md-button>
-				</md-card-actions>
-				<!--</table>-->
-			</md-card>
+								</md-list-item>
+								<!--<md-divider></md-divider>-->
+							</div>
+						</md-list>
+					</md-card-content>
+					<!--<md-divider></md-divider>-->
+					<md-card-actions>
+						<md-button class="md-primary" data-ng-click="rollInitiative()">ROLL INITIATIVE!</md-button>
+					</md-card-actions>
+					<!--</table>-->
+				</md-card>
 
 
 

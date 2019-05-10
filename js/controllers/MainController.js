@@ -1,4 +1,4 @@
-app.controller('MainController', ['$scope', function ($scope) {
+app.controller('MainController', ['$scope', '$mdMenu', function ($scope, $mdMenu) {
 	//CONTAINERS
 	$scope.creatures = [{
 		name: 'Player #1',
@@ -91,10 +91,23 @@ app.controller('MainController', ['$scope', function ($scope) {
 
 	$scope.getInputColor = function(category) {
 		return {
-			player: 'md-primary',
+			player: 'md-hue-3',
 			npc: 'md-accent',
 			monster: 'md-warn'
 		}[category]
+	}
+
+	$scope.avatars = {
+		player: [
+			'https://onlinedm.files.wordpress.com/2010/12/dryad.png',
+			'http://www.imarvintpa.com/Mapping/Tokens/Good%20humanoids/dwarf2.png',
+			'https://onlinedm.files.wordpress.com/2010/07/paladin.png',
+			'http://i.imgur.com/0HxCS.png',
+			'https://s3.amazonaws.com/files.enjin.com/1186665/modules/forum/attachments/Zanath+Token+256x256_1474413247.png'			
+		],
+		monster: {
+			demon: 'https://onlinedm.files.wordpress.com/2010/12/fire-bat.png'
+		}
 	}
 }]);
 

@@ -65,7 +65,7 @@ md-input-container .md-input {
 /*actual page stuff*/
 
 .chapter {
-	background-color: #3F51B5;
+	background-color: #607d8b;
 	width: 100%;
 	padding-bottom: 80px;
 	margin-bottom: -80px;
@@ -77,12 +77,13 @@ md-input-container .md-input {
 }
 
 md-toolbar.c700 {
-	background-color: #303F9F
+	background-color: #4e6a78
 }
 .add-card {
 	display: inline-block;
 	animation: FadeIn 230ms cubic-bezier(0.0, 0.0, 0.2, 1);
 	/*position: absolute;*/
+	background-color: #90A4AE;
 }
 
 .add-card > .md-button {
